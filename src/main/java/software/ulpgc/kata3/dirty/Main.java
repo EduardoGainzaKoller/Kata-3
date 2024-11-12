@@ -1,5 +1,6 @@
-package software.ulpgc.kata3;
+package software.ulpgc.kata3.dirty;
 
+import software.ulpgc.kata3.clean.control.ToggleChartCommand;
 import software.ulpgc.kata3.clean.model.*;
 
 import java.io.File;
@@ -13,6 +14,7 @@ public class Main {
         Stat yearsStat = new YearTitleStatBuilder(titles).build();
         Stat isAdultStat = new IsAdultTitleStatBuilder(titles).build();
         MainFrame mainFrame = new MainFrame();
+        mainFrame.put("toggle", new ToggleChartCommand(yearsStat, isAdultStat, mainFrame.BarchartDisplay()));
         mainFrame.setVisible(true);
     }
 }

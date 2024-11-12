@@ -2,6 +2,7 @@ package software.ulpgc.kata3.clean.model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Stat {
     private final Map<Object, Object> stat;
@@ -20,6 +21,14 @@ public class Stat {
 
     public Object put(Object key, Object value) {
         return stat.put(key, value);
+    }
+
+    public Set<Object> keySet() {
+        return stat.keySet();
+    }
+
+    public Object get(Object key) {
+        return stat.get(key);
     }
 
     @Override

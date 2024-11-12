@@ -1,6 +1,7 @@
-package software.ulpgc.kata3;
+package software.ulpgc.kata3.dirty;
 
 import software.ulpgc.kata3.clean.control.Command;
+import software.ulpgc.kata3.clean.view.BarchartDisplay;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +13,7 @@ import java.util.Map;
 public class MainFrame extends JFrame {
 
     private final Map<String, Command> commands;
+    private BarchartDisplay barchartDisplay;
 
     public MainFrame() throws HeadlessException {
         this.setTitle("Statistics");
@@ -19,8 +21,19 @@ public class MainFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
-        this.add(menu());
+        this.add(barChartDisplay());
+        this.add(menu(), BorderLayout.NORTH);
         commands = new HashMap<>();
+    }
+
+    private JPanel barChartDisplay() {
+        JfreeBarchartDisplay display = new JfreeBarchartDisplay();
+        barchartDisplay = display;
+        return display;
+    }
+
+    public BarchartDisplay BarchartDisplay() {
+        return barchartDisplay;
     }
 
     private JPanel menu() {
@@ -38,5 +51,9 @@ public class MainFrame extends JFrame {
             }
         });
         return toggle;
+    }
+
+    public Command put(String key, Command value) {
+        return commands.put(key, value);
     }
 }
